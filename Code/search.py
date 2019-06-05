@@ -22,7 +22,7 @@ def linear_search_recursive(array, item, index=0):
     # once implemented, change linear_search to call linear_search_recursive
     # to verify that your recursive implementation passes all tests
 
-    # Base case to stop the recusive call
+    # Base case to stop the recusive function call
     # If you go beyond the length of the array
     if index >= len(array):
         # The item doesn't exist
@@ -48,29 +48,20 @@ def binary_search_iterative(array, item):
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
 
-    # Leftmost value
     left = 0
-
-    # Rightmost value
-    # Needs to be 1 less because array index starts at 0
     right = len(array) - 1
 
     # left value shouldnt be greater than right value
     while left <= right:
-        # Find the middle value
-        # Use integer division (discard decimal places)
         mid = (left + right) // 2
-        # If mid value is smaller than the item
         if array[mid] < item:
-            # Set the new left value 1 off of our mid
-            # We discard anything before mid
+            # If the item is larger than the mid ignore the left value
             left = mid + 1
-        elif array[mid] > item:  # If mid value is greater than the item
-            # Set the new right value 1 off our mid
-            # We discard anything that is after mid
+        elif array[mid] > item:
+            # If the item is smaller than the mid ignore the right value
             right = mid - 1
         else:
-            # mid becomes the value were looking for
+            # Mid becomes the item were looking for
             return mid
     return
 
@@ -79,14 +70,23 @@ def binary_search_recursive(array, item, left=None, right=None):
     # TODO: implement binary search recursively here
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
+
+    # Base case for exiting recusive function
     if left > right:
         return
+
+    # When calling the function the first time
+    if left is None and right is None:
+        left = 0
+        right = len(array) - 1
 
     mid = (left + right) // 2
 
     if array[mid] > item:
+        # If the item is smaller than the mid ignore the right value
         return binary_search_recursive(array, item, left, mid - 1)
     elif array[mid] < item:
+        # If the item is larger than the mid ignore the left value
         return binary_search_recursive(array, item, mid + 1, right)
     else:
         return mid
