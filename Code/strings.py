@@ -1,10 +1,27 @@
 #!python
 
+
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
+    if pattern in text:
+        return True
+    else:
+        return False
+
+
+def index_helper(text, pattern):
+    assert isinstance(text, str), 'text is not a string: {}'.format(text)
+    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+
+    indices = []
+    for index, _ in enumerate(text):
+        if pattern == text[index: (index + len(pattern))]:
+            indices.append(index)
+
+    return indices
 
 
 def find_index(text, pattern):
@@ -12,7 +29,12 @@ def find_index(text, pattern):
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+
+    indices = index_helper(text, pattern)  # call the helper function
+    if len(indices) is not 0:
+        return indices[0]  # return the first index
+
+    return None  # unless there's nothing, in which case, return None
 
 
 def find_all_indexes(text, pattern):
@@ -20,7 +42,8 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+
+    return index_helper(text, pattern)  # call the helper function
 
 
 def test_string_algorithms(text, pattern):
