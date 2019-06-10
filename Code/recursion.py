@@ -15,10 +15,10 @@ def factorial(n):
 
 def factorial_iterative(n):
     # TODO: implement the factorial function iteratively here
-    product = 1
+    factorial = 1
     for num in range(n):
-        product *= num + 1
-    return product
+        factorial *= num + 1
+    return factorial
 
 
 def factorial_recursive(n):

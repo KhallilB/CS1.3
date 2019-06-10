@@ -22,8 +22,7 @@ def linear_search_recursive(array, item, index=0):
     # once implemented, change linear_search to call linear_search_recursive
     # to verify that your recursive implementation passes all tests
 
-    # Base case to stop the recusive function call
-    # If you go beyond the length of the array
+    # Base case for exiting recusive function
     if index >= len(array):
         # The item doesn't exist
         return
@@ -44,7 +43,6 @@ def binary_search(array, item):
 
 
 def binary_search_iterative(array, item):
-    # TODO: implement binary search iteratively here
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
 
@@ -55,10 +53,10 @@ def binary_search_iterative(array, item):
     while left <= right:
         mid = (left + right) // 2
         if array[mid] < item:
-            # If the item is larger than the mid ignore the left value
+            # If the item is larger than the mid ignore the left
             left = mid + 1
         elif array[mid] > item:
-            # If the item is smaller than the mid ignore the right value
+            # If the item is smaller than the mid ignore the right
             right = mid - 1
         else:
             # Mid becomes the item were looking for
@@ -67,7 +65,6 @@ def binary_search_iterative(array, item):
 
 
 def binary_search_recursive(array, item, left=None, right=None):
-    # TODO: implement binary search recursively here
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
 
@@ -83,16 +80,10 @@ def binary_search_recursive(array, item, left=None, right=None):
     mid = (left + right) // 2
 
     if array[mid] > item:
-        # If the item is smaller than the mid ignore the right value
+        # If the item is smaller than the mid ignore the right
         return binary_search_recursive(array, item, left, mid - 1)
     elif array[mid] < item:
-        # If the item is larger than the mid ignore the left value
+        # If the item is larger than the mid ignore the left
         return binary_search_recursive(array, item, mid + 1, right)
     else:
         return mid
-
-
-array = [0, 32, 131, 2, 34, 12]
-item = 12
-
-print(binary_search_iterative(array, item))
