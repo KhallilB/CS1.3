@@ -68,6 +68,8 @@ def binary_search_recursive(array, item, left=None, right=None):
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
 
+    # O
+
     # Base case for exiting recusive function
     if left > right:
         return
@@ -81,9 +83,11 @@ def binary_search_recursive(array, item, left=None, right=None):
 
     if array[mid] > item:
         # If the item is smaller than the mid ignore the right
-        return binary_search_recursive(array, item, left, mid - 1)
+        right = mid - 1
+        return binary_search_recursive(array, item, left, right)
     elif array[mid] < item:
         # If the item is larger than the mid ignore the left
-        return binary_search_recursive(array, item, mid + 1, right)
+        left = mid + 1
+        return binary_search_recursive(array, item, left, right)
     else:
         return mid
