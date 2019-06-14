@@ -58,6 +58,7 @@ class ArrayQueue(object):
         """Initialize this queue and enqueue the given items, if any."""
         # Initialize a new list (dynamic array) to store the items
         self.list = list()
+        self.size = 0
         if iterable is not None:
             for item in iterable:
                 self.enqueue(item)
@@ -68,15 +69,16 @@ class ArrayQueue(object):
 
     def is_empty(self):
         """Return True if this queue is empty, or False otherwise."""
-        return len(self.list) == 0
+        return self.size == 0
 
     def length(self):
         """Return the number of items in this queue."""
-        return len(self.list)
+        return self.size
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue."""
         self.list.append(item)
+        self.size += 1
 
     def front(self):
         """Return the item at the front of this queue without removing it,
@@ -90,6 +92,7 @@ class ArrayQueue(object):
         or raise ValueError if this queue is empty."""
         if self.is_empty():
             raise ValueError("Queue is empty")
+        self.size -= 1
         return self.list.pop(0)
 
 
