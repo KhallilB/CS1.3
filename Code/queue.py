@@ -29,7 +29,8 @@ class LinkedQueue(object):
         return self.list.length()
 
     def enqueue(self, item):
-        """Insert the given item at the back of this queue."""
+        """Insert the given item at the back of this queue.
+        Running time: O(1): Appending to the tail is constant time."""
         self.list.append(item)
 
     def front(self):
@@ -41,7 +42,8 @@ class LinkedQueue(object):
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
-        or raise ValueError if this queue is empty."""
+        or raise ValueError if this queue is empty. 
+        Running time: Deleting the tail is constant time."""
         if self.is_empty():
             raise ValueError('Queue is empty')
         item = self.front()
@@ -76,7 +78,8 @@ class ArrayQueue(object):
         return self.size
 
     def enqueue(self, item):
-        """Insert the given item at the back of this queue."""
+        """Insert the given item at the back of this queue.
+        Running time: O(1): Appending to the end of a list is constant time."""
         self.list.append(item)
         self.size += 1
 
@@ -89,7 +92,9 @@ class ArrayQueue(object):
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
-        or raise ValueError if this queue is empty."""
+        or raise ValueError if this queue is empty.
+        Running time: O(n), popping from a lis is O(n)."""
+
         if self.is_empty():
             raise ValueError("Queue is empty")
         self.size -= 1

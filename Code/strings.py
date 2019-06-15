@@ -16,6 +16,8 @@ def index_helper(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
+    # O(n): Where n is the amount of letters in the text
+
     indices = []
     for index, _ in enumerate(text):
         if pattern == text[index: (index + len(pattern))]:
@@ -30,6 +32,11 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
+    # O(n): Where (n) is the amount of indexes in the text.
+    # It needs to duplicate the array the go through all of the indices
+    # in the array.
+    # O(1): If the item is None or 0
+
     indices = index_helper(text, pattern)  # call the helper function
     if len(indices) is not 0:
         return indices[0]  # return the first index
@@ -42,6 +49,8 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+
+    # O(n): For the same reasons as above, array duplication
 
     return index_helper(text, pattern)  # call the helper function
 

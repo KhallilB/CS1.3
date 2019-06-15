@@ -18,9 +18,11 @@ def linear_search_iterative(array, item):
 
 
 def linear_search_recursive(array, item, index=0):
-    # TODO: implement linear search recursively here
     # once implemented, change linear_search to call linear_search_recursive
     # to verify that your recursive implementation passes all tests
+
+    # O(n): Where (n) is the amount of items. We're looping over (n) items in the list were
+    # given
 
     # Base case for exiting recusive function
     if index >= len(array):
@@ -46,6 +48,9 @@ def binary_search_iterative(array, item):
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
 
+    # 0(log n): Where (n) is the amount of items in the list. Taking the list of
+    # items and cutting in half k amount of times depending on the length of the list
+
     left = 0
     right = len(array) - 1
 
@@ -68,7 +73,7 @@ def binary_search_recursive(array, item, left=None, right=None):
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
 
-    # O
+    # O(log n): same as iterative
 
     # Base case for exiting recusive function
     if left > right:
