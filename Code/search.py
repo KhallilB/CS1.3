@@ -75,14 +75,14 @@ def binary_search_recursive(array, item, left=None, right=None):
 
     # O(log n): same as iterative
 
-    # Base case for exiting recusive function
-    if left > right:
-        return
-
     # When calling the function the first time
     if left is None and right is None:
         left = 0
         right = len(array) - 1
+
+    # Base case for exiting recusive function
+    if left > right:
+        return
 
     mid = (left + right) // 2
 
