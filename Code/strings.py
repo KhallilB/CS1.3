@@ -56,7 +56,8 @@ def find_all_indexes(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
-    # O(n): For the same reasons as above, array duplication
+    # Time: O(n): For the same reasons as above, array duplication
+    # Space: O(1): Only duplicating an array that doesnt grows
 
     return index_helper(text, pattern)  # call the helper function
 
