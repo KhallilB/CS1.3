@@ -174,7 +174,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('tear bear ear canal', 'ear') == [1, 6, 10]
         assert find_all_indexes('burrito perro guerra', 'rr') == [2, 10, 17]
         assert find_all_indexes('isnt it isnt it isnt it', 'isnt it') == [
-            0, 8, 16]  # taylor swift! ♥
+            0, 8, 16]
         assert find_all_indexes('sandbox andromeda and androgyny', 'and') == [
             1, 8, 18, 22]
         assert find_all_indexes(

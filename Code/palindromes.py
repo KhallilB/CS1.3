@@ -6,6 +6,10 @@ import string
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 
+# Use immutable set for constant lookup time
+# Roommates told me about this ^
+PUNCTUATION = frozenset(string.punctuation)
+
 
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
@@ -14,45 +18,61 @@ def is_palindrome(text):
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
 
-    split_text = ''.join(char for char in text.lower()
-                         if char in string.ascii_lowercase)
-
-    return is_palindrome_iterative(text)
-    # return is_palindrome_recursive(text)
+    # return is_palindrome_iterative(text)
+    return is_palindrome_recursive(text)
 
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
+
     left = 0
     right = len(text)-1
 
-    while left < right:
-        if text[left] == text[right]:
-            right -= 1
+    # start checking from front and back, and meet in the middle
+    while left != right and left < right:
+        # ignore punctuation and space
+        if text[left] in PUNCTUATION or text[left] == ' ':
             left += 1
-        else:
+            continue
+        if text[right] in PUNCTUATION or text[right] == ' ':
+            right -= 1
+            continue
+
+        # check for equality, ignore casing
+        if (text[left].lower() != text[right].lower()):
             return False
-    else:
-        return True
+        left += 1
+        right -= 1
+
+    return True
 
 
 def is_palindrome_recursive(text, left=None, right=None):
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
-    if left is None and right is None:
+    if left == None and right == None:
         left = 0
         right = len(text)-1
 
-    if left < right:
-        if text[left] == text[right]:
-            return is_palindrome_recursive(text, left+1, right-1)
-        else:
-            return False
-    else:
+    # We've moved through the text
+    if left == right or left > right:
         return True
+
+    # check for punctuation
+    if text[left] in PUNCTUATION or text[left] == ' ':
+        return is_palindrome_recursive(text, left+1, right)
+
+    if text[right] in PUNCTUATION or text[right] == ' ':
+        return is_palindrome_recursive(text, left, right-1)
+
+    # check for base case case
+    if text[left].lower() == text[right].lower():
+        return is_palindrome_recursive(text, left+1, right-1)
+
+    return False
 
 
 def main():
