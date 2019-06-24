@@ -5,7 +5,10 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
+    # Time:
+    # Worst Case: O(n): because it must go through text to find the pattern
+    # Best Case: would be O(1) if the pattern is in the beginning
+    # Space: O(1) because it will always be simply true or false
     if pattern in text:
         return True
     else:
@@ -16,7 +19,8 @@ def index_helper(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
-    # O(n): Where n is the amount of letters in the text
+    # Time: O(n): Where n is the amount of letters in the text.
+    # Space: 0(1): Creating an array that doesnt grow based on input is constant time
 
     indices = []
     for index, _ in enumerate(text):
@@ -32,10 +36,12 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
+    # Time:
     # Worst case: O(n): Where (n) is the amount of indexes in the text.
-    # It needs to duplicate the array the go through all of the indices
+    # It needs to duplicate the array then go through all of the indices
     # in the array.
     # Best case: O(1): If the item is None or 0
+    # Space: 0(1): Only duplicating an array that doesnt grow
 
     indices = index_helper(text, pattern)  # call the helper function
     if len(indices) is not 0:
