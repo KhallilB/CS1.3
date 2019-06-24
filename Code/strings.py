@@ -32,10 +32,10 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
-    # O(n): Where (n) is the amount of indexes in the text.
+    # Worst case: O(n): Where (n) is the amount of indexes in the text.
     # It needs to duplicate the array the go through all of the indices
     # in the array.
-    # O(1): If the item is None or 0
+    # Best case: O(1): If the item is None or 0
 
     indices = index_helper(text, pattern)  # call the helper function
     if len(indices) is not 0:
