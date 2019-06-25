@@ -27,7 +27,7 @@ class HashTable(object):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # TODO: Calculate load factor
-        return self.size/len(self.buckets)
+        return float(self.size)/len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
@@ -139,7 +139,7 @@ class HashTable(object):
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
-        Best and worst case running time: ??? under what conditions? [TODO]
+        Best and worst case running time: O(n) Where n is the amount entries in the hashtable[TODO]
         Best and worst case space usage: ??? what uses this memory? [TODO]"""
         # If unspecified, choose new size dynamically based on current size
         if new_size is None:
@@ -150,12 +150,13 @@ class HashTable(object):
         # Get a list to temporarily hold all current key-value entries
         entries = self.items()
         # Create a new list of new_size total empty linked list buckets
+        # 2b new buckets => O(b)
         self.buckets = [LinkedList() for _ in range(new_size)]
         self.size = 0
         # Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
         for key, value in entries:  # each entry is a linked list
-            self.set(key, value)
+            self.set(key, value)  # O(l)
 
 
 def test_hash_table():
