@@ -7,7 +7,7 @@ class Node(object):
         """Initialize node with given data"""
         self.data = data
         self.next = None
-        self.previous = None
+        self.prev = None
 
 
 class DoublyLinkedList(object):
@@ -28,6 +28,21 @@ class DoublyLinkedList(object):
 
     def insert_before(self, ref, node):
         """Inserts a node after a given reference"""
+        # Place before the reference
+        node.next = ref
+
+        # If node before the reference is empty
+        if ref.prev is None:
+            # The node becomes the new head
+            self.head = node
+        # Otherwise
+        else:
+            # Reset previous pointer of node
+            node.prev = ref.prev
+            # Now we point to the new node
+            node.prev.next = node
+        # Set the node to the node before regardless
+        ref.prev = node
 
     def insert_after(self, ref, node):
         """Inserts a node before a given reference"""
