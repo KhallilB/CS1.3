@@ -142,9 +142,43 @@ class DoublyLinkedList(object):
 
         if node.next is not None:
             node.prev.next = node.next
-            node.nex.prev = node.prev
+            node.next.prev = node.prev
         else:
             if node.data == item:
                 node.prev.next = None
             else:
                 raise ValueError('Item not found')
+
+    def traverse(self):
+        """"Navigates through all the items in the linked list"""
+        if self.is_empty():
+            raise ValueError('List is emopty')
+            return
+        else:
+            node = self.head
+            while node is not None:
+                print(node.data, " ")
+                node = node.next
+
+
+def test_doubly_linked_list():
+    ll = DoublyLinkedList()
+    print('Appending Items:')
+    ll.append('A')
+    ll.append('B')
+    ll.append('C')
+    ll.traverse()
+    print('Preappending Items:')
+    ll.preppend('1')
+    ll.preppend('2')
+    ll.preppend('3')
+    ll.traverse()
+    print('Deleting Items:')
+    ll.delete('1')
+    ll.delete('2')
+    ll.delete('3')
+    ll.traverse()
+
+
+if __name__ == '__main__':
+    test_doubly_linked_list()
