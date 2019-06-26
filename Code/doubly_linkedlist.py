@@ -43,6 +43,8 @@ class DoublyLinkedList(object):
             node.prev.next = node
         # Set the node to the node before regardless
         ref.prev = node
+        # Increase the size
+        self.size += 1
 
     def insert_after(self, ref, node):
         """Inserts a node before a given reference"""
@@ -61,23 +63,44 @@ class DoublyLinkedList(object):
             node.next.prev = node
         # Set to the node after regardless
         ref.next = node
+        # Increase the size
+        self.size += 1
 
     def append(self, item):
         """Insert the given item at the beginning of the list"""
+        # Create node
+        node = Node(item)
+
         # If list is empty
         if self.is_empty():
             # Node becomes the head
-            self.head = item
+            self.head = node
             # Node also becomes tail because it is only item in list
-            self.tail = item
+            self.tail = node
+            # Increase the size
+            self.size += 1
         # Otherwise
         else:
             # Use helper function to insert after the tail
-            self.insert_after(self.tail, item)
+            self.insert_after(self.tail, node)
 
-    def prepend(self, item):
+    def preppend(self, item):
         """ Insert the given item at the end of the list"""
-        pass
+        # Create node
+        node = Node(item)
+
+        # If the list is empty
+        if self.is_empty():
+            # Node beceomes the head
+            self.head = node
+            # Node also becomes tail because it is only item in list
+            self.tail = node
+            # Increase the size
+            self.size += 1
+        # Otherwise
+        else:
+            # Use helper function to insert befor the head
+            self.insert_before(self.head, node)
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality."""
@@ -85,4 +108,3 @@ class DoublyLinkedList(object):
 
     def delete(self, item):
         """Removes an item from a linked list"""
-        pass
