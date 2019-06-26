@@ -38,3 +38,19 @@ class DoublyLinkedList(object):
             self.size += 1
         else:
             raise ValueError('List is Empty')
+
+    def append(self, item):
+        """Insert the given item at the beginning of the list"""
+        pass
+
+    def prepend(self, item):
+        """ Insert the given item at the end of the list"""
+        pass
+
+    def find(self, quality):
+        """Return an item from this linked list satisfying the given quality."""
+        pass
+
+    def delete(self, item):
+        """Removes an item from a linked list"""
+        pass
