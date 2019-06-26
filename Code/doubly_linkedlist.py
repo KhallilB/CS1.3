@@ -46,7 +46,21 @@ class DoublyLinkedList(object):
 
     def insert_after(self, ref, node):
         """Inserts a node before a given reference"""
-        pass
+        # Place after the refernce
+        node.prev = ref
+
+        # If the node after reference is empty
+        if ref.next is None:
+            # The node becomes the new tail
+            self.tail = node
+        # Otherwise
+        else:
+            # Reset the next pointer of node
+            node.next = ref.next
+            # Now we point to the new node
+            node.next.prev = node
+        # Set to the node after regardless
+        ref.next = node
 
     def append(self, item):
         """Insert the given item at the beginning of the list"""
