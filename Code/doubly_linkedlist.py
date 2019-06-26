@@ -104,7 +104,23 @@ class DoublyLinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality."""
-        pass
+        # Start at the head
+        node = self.head
+        # Check to see if we found correct quality
+        found = False
+
+        # While not found
+        while node and not found:
+            # If the node is of the correct value
+            if node.data == quality:
+                # Found
+                found = True
+            # Otherwise
+            else:
+                # Move to the next node
+                node = node.next
+
+        return node
 
     def delete(self, item):
         """Removes an item from a linked list"""
