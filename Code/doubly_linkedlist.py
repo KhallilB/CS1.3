@@ -41,7 +41,23 @@ class DoublyLinkedList(object):
 
     def append(self, item):
         """Insert the given item at the beginning of the list"""
-        pass
+        # If the head is empty:
+        if self.is_empty:
+            # Create new node
+            node = Node(item)
+            # Created node becomes new head node
+            self.head = node
+            # Exit
+            return
+        # Otherwise if its not empty
+        # Create new node
+        node = Node(item)
+        # Point the head to the next node
+        node.next = self.head
+        # Point the node back toward the head
+        self.head.previous = node
+        # Head becomes the new node
+        self.head = node
 
     def prepend(self, item):
         """ Insert the given item at the end of the list"""
