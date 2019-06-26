@@ -124,3 +124,27 @@ class DoublyLinkedList(object):
 
     def delete(self, item):
         """Removes an item from a linked list"""
+        # Start at the head
+        node = self.head
+        # Check if we found item
+        found = False
+
+        # While the next node has data in i
+        while node and not found:
+            # If the node is of the correct value
+            if node.data == item:
+                # Found
+                found = True
+            # Otherwise
+            else:
+                # Move to the next node
+                node = node.next
+
+        if node.next is not None:
+            node.prev.next = node.next
+            node.nex.prev = node.prev
+        else:
+            if node.data == item:
+                node.prev.next = None
+            else:
+                raise ValueError('Item not found')
