@@ -1,5 +1,6 @@
 #!python
 from queue import Queue
+from stack import Stack
 
 
 class BinaryTreeNode(object):
@@ -345,6 +346,27 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Traverse in-order without using recursion (stretch challenge)
+        stack = Stack()
+        stack.push(node)
+
+        # Take all of the nodes from the left
+        while node is not None and node.left is not None:
+            stack.push(node.left)
+            node = node.left
+
+        # While the stack isnt empty
+        while not stack.is_empty():
+            node = stack.pop()
+            if node is not None:
+                visit(node.data)
+                # If there are any right nodes
+                if node.right is not None:
+                    temp_node = node.right
+                    stack.push(temp_node)
+                    # Get all their left nodes
+                    while temp_node.left is not None:
+                        stack.push(temp_node.left)
+                        temp_node = temp_node.left
 
     def items_pre_order(self):
         """Return a pre-order list of all items in this binary search tree."""

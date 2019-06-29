@@ -129,7 +129,7 @@ class DoublyLinkedList(object):
         # Check if we found item
         found = False
 
-        # While the next node has data in i
+        # While the next node has data in it
         while node and not found:
             # If the node is of the correct value
             if node.data == item:
@@ -148,6 +148,16 @@ class DoublyLinkedList(object):
                 node.prev.next = None
             else:
                 raise ValueError('Item not found')
+
+    # TODO: Add Delete from head
+    def delete_head(self, item):
+        """Deletes the first node in a liked list"""
+        pass
+
+    # TODO: Add Delete from the las node
+    def delete_tail(self, item):
+        """Deletes the last node in a linked list"""
+        pass
 
     def traverse(self):
         """"Navigates through all the items in the linked list"""
