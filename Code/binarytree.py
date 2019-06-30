@@ -330,7 +330,7 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        if (node is None):
+        if node is None:
             return
 
         # TODO: Traverse left subtree, if it exists
@@ -382,7 +382,7 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        if (node is None):
+        if node is None:
             return
 
         # TODO: Visit this node's data with given function
@@ -398,7 +398,17 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Traverse pre-order without using recursion (stretch challenge)
-        pass
+        stack = Stack()
+        stack.push(node)
+
+        while not stack.is_empty():
+            node = stack.pop()
+            if node is not None:
+                visit(node.data)
+                if node is not None:
+                    stack.push(node.right)
+                if node is not None:
+                    stack.push(node.left)
 
     def items_post_order(self):
         """Return a post-order list of all items in this binary search tree."""
@@ -414,7 +424,7 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        if (node is None):
+        if node is None:
             return
 
         # TODO: Traverse left subtree, if it exists
@@ -430,6 +440,28 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Traverse post-order without using recursion (stretch challenge)
+        if node is None:
+            return
+
+        stack = Stack()
+        stack.push(node)
+
+        already_seen = set()
+
+        while not stack.is_empty():
+            node = stack.pop()
+            if node not in already_seen:
+                if node.right is not None and node.left is not None:
+                    stack.push(node)
+                    already_seen.add(node)
+                    if node.right is not None:
+                        stack.push(node.right)
+                    if node.left is not None:
+                        stack.push(node.left)
+                else:
+                    visit(node.data)
+            else:
+                visit(node.data)
 
     def items_level_order(self):
         """Return a level-order list of all items in this binary search tree."""
