@@ -24,11 +24,13 @@ class HashSet(object):
     def contains(self, key):
         return self.hashset.contains(key)
 
-    def add(self, element):
-        pass
+    def add(self, key_value):
+        self.size += 1
+        return hashset.set(key_value)
 
-    def remove(self, element):
-        pass
+    def remove(self, key_value):
+        self.size -= 1
+        return hashset.delete(key_value)
 
     def union(self, set):
         pass
