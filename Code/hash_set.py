@@ -12,15 +12,16 @@ class HashSet(object):
                 self.add(element)
 
     def __iter__(self):
-        pass
+        for item in self.all_entries():
+            yield item
+
+    def __length__(self):
+        return self.size
 
     def all_entries(self):
-        pass
+        return self.hashset.keys()
 
     def contains(self, key):
-        pass
-
-    def length(self):
         pass
 
     def add(self, element):
