@@ -22,7 +22,7 @@ class HashSet(object):
         return self.hashset.keys()
 
     def contains(self, key):
-        pass
+        return self.hashset.contains(key)
 
     def add(self, element):
         pass
