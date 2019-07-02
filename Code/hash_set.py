@@ -26,23 +26,48 @@ class HashSet(object):
 
     def add(self, key_value):
         self.size += 1
-        return hashset.set(key_value)
+        return self.hashset.set(key_value, key_value)
 
     def remove(self, key_value):
         self.size -= 1
-        return hashset.delete(key_value)
+        return self.hashset.delete(key_value)
 
-    def union(self, set):
-        pass
+    def union(self, sec_set):
+        union = sec_set
+        for key_value in self:
+            union.add(key_value)
+        return union
 
-    def intersection(self, set):
-        pass
+    def intersection(self, sec_set):
+        intersection = HashSet()
 
-    def difference(self, set):
-        pass
+        if sec_set.size < self.size:
+            smaller = sec_set
+            larger = self
+        else:
+            smaller = self
+            larger = sec_set
+        for key_value in smaller:
+            if larger.contains(key_value):
+                intersection.add(key_value)
+        return intersection
 
-    def is_subset(self, set):
-        pass
+    def difference(self, sec_set):
+        difference = self
+        intersection = self.intersection(sec_set)
 
-    def is_superset(self, set):
-        pass
+        for item in intersection:
+            difference.remove(item)
+        return difference
+
+    def is_subset(self, sec_set):
+        for key_value in self:
+            if key_value not in sec_set:
+                return False
+        return True
+
+    def is_superset(self, sec_set):
+        for key_value in sec_set:
+            if key_value not in self:
+                return False
+        return True
