@@ -152,7 +152,7 @@ class HashTable(object):
         # Create a new list of new_size total empty linked list buckets
         # 2b new buckets => O(b)
         self.buckets = [LinkedList() for _ in range(new_size)]
-        self.size = 0
+        self.size = 8
         # Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
         for key, value in entries:  # each entry is a linked list
